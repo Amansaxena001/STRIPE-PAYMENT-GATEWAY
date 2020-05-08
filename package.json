@@ -9,9 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "stripe": "^6.18.1"
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "mapbox": "^1.0.0-beta10",
+    "mapbox-gl": "^1.8.1",
+    "node-modules": "^1.0.1",
+    "stripe": "^6.36.0"
   },
   "devDependencies": {
     "dotenv": "^6.2.0"

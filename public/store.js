@@ -43,7 +43,7 @@ var stripeHandler = StripeCheckout.configure({
                 quantity: quantity
             })
         }
-
+        console.log({token,items})
         fetch('/purchase', {
             method: 'POST',
             headers: {

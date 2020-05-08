@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load()
+  require('dotenv').config()
 }
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY
@@ -9,6 +9,7 @@ const express = require('express')
 const app = express()
 const fs = require('fs')
 const stripe = require('stripe')(stripeSecretKey)
+var MapboxClient = require('mapbox')
 
 app.set('view engine', 'ejs')
 app.use(express.json())
@@ -35,11 +36,25 @@ app.post('/purchase', function(req, res) {
       const itemsJson = JSON.parse(data)
       const itemsArray = itemsJson.music.concat(itemsJson.merch)
       let total = 0
+      console.log(req.body);
       req.body.items.forEach(function(item) {
-        const itemJson = itemsArray.find(function(i) {
-          return i.id == item.id
+        console.log(itemsArray)
+        const itemJson = itemsArray.forEach(function(i) {
+          if(
+         i.id == item.id){
+           return i.price;
+           
+
+         }
+        
+        
+        
         })
+      
+        console.log(itemsJson)
         total = total + itemJson.price * item.quantity
+        console.log(item)
+
       })
 
       stripe.charges.create({
@@ -55,6 +70,8 @@ app.post('/purchase', function(req, res) {
       })
     }
   })
-})
+  })
+
+
 
 app.listen(3000)
